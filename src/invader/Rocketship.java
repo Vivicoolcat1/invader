@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
+	int speed;
 	public void update() {
 
 	}
@@ -17,6 +18,7 @@ public class Rocketship extends GameObject {
 
 	public Rocketship(int x, int y, int width, int height) {
 		super();
+speed=5;
 
 	}
 

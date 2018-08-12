@@ -7,7 +7,7 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-
+boolean isAlive = true;
 	public GameObject() {
 		x = 100;
 		y = 100;
