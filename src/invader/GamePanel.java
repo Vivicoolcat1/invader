@@ -130,6 +130,9 @@ if(e.getKeyCode()== KeyEvent.VK_LEFT) {
 if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
 	moveRight =true;
 }
+if(e.getKeyCode()== KeyEvent.VK_SPACE) {
+	o.addProjectile(new Projectile (rocket.x+ 25,rocket.y+25,10,10));
+}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -151,6 +154,7 @@ if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
 
 	public void updateGameState() {
 		o.update();
+		o.manageEnemies();
 	}
 
 	public void updateEndState() {

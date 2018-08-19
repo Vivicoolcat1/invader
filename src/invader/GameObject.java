@@ -8,11 +8,11 @@ public class GameObject {
 	int width;
 	int height;
 boolean isAlive = true;
-	public GameObject() {
-		x = 100;
-		y = 100;
-		width = 50;
-		height = 50;
+	public GameObject(int x, int y, int width, int height) {
+		this.x=x;
+		this.y=y;
+		this.width=width;
+		this.height=height;
 
 	}
 
