@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Rocketship extends GameObject {
 	int speed;
 	public void update() {
-
+super.update();
 	}
 
 	public void draw(Graphics g) {
