@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,6 +25,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	boolean moveRight;
 	ObjectManager o;
 	Rocketship rocket;
+	public static BufferedImage spaceImg;
+	  public static BufferedImage rocketImg;
+	  public static BufferedImage alienImg;
+	  public static BufferedImage bulletImg;
+
+
 	final int MENU_STATE = 0;
 
 	final int GAME_STATE = 1;
@@ -92,6 +101,25 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		titleFont3 = new Font("Ariel", Font.PLAIN, 30);
 		rocket = new Rocketship(250, 700, 50, 50);
 		o = new ObjectManager(rocket);
+		   try {
+
+               alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+
+               rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+               bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+               spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+
+       } catch (IOException e) {
+
+               // TODO Auto-generated catch block
+
+               e.printStackTrace();
+
+       }
+
+
 	}
 	
 
@@ -115,6 +143,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			currentState = END_STATE;
 		} else if (e.getKeyCode() == KeyEvent.VK_ENTER && currentState == END_STATE) {
 			currentState = MENU_STATE;
+			rocket = new Rocketship(250,700,50,50);
+			o = new ObjectManager(rocket);
 		}
 
 	
@@ -133,6 +163,7 @@ if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
 if(e.getKeyCode()== KeyEvent.VK_SPACE) {
 	o.addProjectile(new Projectile (rocket.x+ 25,rocket.y+25,10,10));
 }
+
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -155,6 +186,11 @@ if(e.getKeyCode()== KeyEvent.VK_SPACE) {
 	public void updateGameState() {
 		o.update();
 		o.manageEnemies();
+		o.checkCollision();
+		o.purgeObjects();
+		if(rocket.isAlive==false) {
+			currentState = END_STATE;
+		}
 	}
 
 	public void updateEndState() {
@@ -177,9 +213,9 @@ if(e.getKeyCode()== KeyEvent.VK_SPACE) {
 	}
 
 	public void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
+		 g.drawImage(GamePanel.spaceImg, WIDTH, HEIGHT, null);
 
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		
 		o.draw(g);
 	}
 
