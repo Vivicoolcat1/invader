@@ -19,6 +19,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont1;
 	Font titleFont2;
 	Font titleFont3;
+	Font titleFont4;
+	Font titleFont5;
+	Font titleFont6;
 	boolean moveDown;
 	boolean moveUp;
 	boolean moveLeft;
@@ -99,6 +102,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		titleFont1 = new Font("Ariel", Font.PLAIN, 48);
 		titleFont2 = new Font("Ariel", Font.PLAIN, 30);
 		titleFont3 = new Font("Ariel", Font.PLAIN, 30);
+		titleFont4 = new Font("Ariel", Font.PLAIN, 60);
+		titleFont5 = new Font("Ariel", Font.PLAIN, 30);
+		titleFont6 = new Font("Ariel", Font.PLAIN, 35);
 		rocket = new Rocketship(250, 700, 50, 50);
 		o = new ObjectManager(rocket);
 		   try {
@@ -203,13 +209,13 @@ if(e.getKeyCode()== KeyEvent.VK_SPACE) {
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		g.setFont(titleFont1);
 		g.setColor(Color.WHITE);
-		g.drawString("LEAGUE INVADERS!", 200, 200);
+		g.drawString("LEAGUE INVADERS!", 50, 200);
 		g.setFont(titleFont2);
 		g.setColor(Color.WHITE);
-		g.drawString("Press 	ENTER to start", 200, 400);
+		g.drawString("Press 	ENTER to start", 50, 400);
 		g.setFont(titleFont3);
 		g.setColor(Color.WHITE);
-		g.drawString("Press SPACE for instructions", 200, 600);
+		g.drawString("Press SPACE for instructions", 50, 600);
 	}
 
 	public void drawGameState(Graphics g) {
@@ -223,6 +229,15 @@ if(e.getKeyCode()== KeyEvent.VK_SPACE) {
 		g.setColor(Color.RED);
 
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		g.setFont(titleFont4);
+		g.setColor(Color.BLACK);
+		g.drawString("Game over", 50, 200);
+		g.setFont(titleFont5);
+		g.setColor(Color.BLACK);
+		g.drawString("you killed "+ o.score+ " enemies", 50, 400);
+		g.setFont(titleFont6);
+		g.setColor(Color.BLACK);
+		g.drawString("Press ENTER to restart", 50, 500);
 	}
 
 }

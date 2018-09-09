@@ -25,7 +25,7 @@ super.update();
 
 			x++;
 
-			if (x +width> LeagueInvaders.WIDTH) {
+			if (x +width> 500) {
 				moveRight = false;
 			}
 		} else {
